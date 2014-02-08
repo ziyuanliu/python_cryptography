@@ -3,7 +3,7 @@
 # @Author: ziyuanliu
 # @Date:   2014-02-07 14:43:24
 # @Last Modified by:   ziyuanliu
-# @Last Modified time: 2014-02-07 15:15:21
+# @Last Modified time: 2014-02-07 21:16:20
 
 
 LETTERS = ' !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~' 
@@ -11,7 +11,11 @@ MAX_KEY_SIZE = len(LETTERS)
 def getMode():
 	while True:
 		mode = raw_input("encrypt or decrypt? ").lower()
-		if mode in 'encrypt e decrypt d':
+		if mode=='e':
+			return 'encrypt'
+		elif mode=='d':
+			return 'decrypt'
+		elif mode in 'encrypt decrypt':
 			return mode
 		
 def getMsg():
@@ -40,7 +44,7 @@ def translate_caesar(mode, msg, key):
 		translated+=chr(num)
 	return translated
 
-def brute_force(encrypted):
+def caesar_brute_force(encrypted):
 	for key in range(len(LETTERS)):
 		translated = ''
 		for char in encrypted:
